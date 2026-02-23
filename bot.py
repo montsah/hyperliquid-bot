@@ -13,8 +13,10 @@ DRY_RUN = os.getenv('DRY_RUN', 'true').lower() == 'true'
 # ===========================================
 
 # Choose testnet or mainnet
-url = constants.TESTNET_API_URL if IS_TESTNET else constants.API_URL
-info = Info(url, skip_ws=True)
+if IS_TESTNET:
+    url = "https://api.hyperliquid-testnet.xyz"
+else:
+    url = "https://api.hyperliquid.xyz"info = Info(url, skip_ws=True)
 
 # Initialize exchange (this signs with your private key)
 exchange = Exchange(
